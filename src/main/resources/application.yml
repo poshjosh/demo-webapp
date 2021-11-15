@@ -1,0 +1,41 @@
+debug: true
+
+logging:
+  level:
+    ROOT: DEBUG
+    web: DEBUG
+    org.springframework.core.log.LogFormatUtils: INFO
+    org.springframework.web.filter.CommonsRequestLoggingFilter: INFO
+    org.springframework: INFO
+    com.bc: INFO
+    org.apache: INFO
+    com.looseboxes.ratelimiter.spring.web.AnnotatedRequestMappingImpl: TRACE
+    com.looseboxes.ratelimiter.spring: TRACE
+    com.looseboxes.ratelimiter: TRACE
+    com.looseboxes: DEBUG
+
+rate-limiter:
+  disabled: false
+  # If using annotations, you have to specify one package where all the controllers should be scanned for
+  controller-packages:
+    - com.looseboxes.demo.webapp
+  # request-to-id-converter-function should be is used to convert
+  # These configurations do not apply to the @RateLimit annotations, those are handled separately
+  rate-limit-configs:
+    general:
+      limits:
+        -
+          limit: 90
+          duration: 1
+          time-unit: SECONDS
+        -
+          limit: 230
+          duration: 1
+          time-unit: MINUTES
+    utm_source:
+      limits:
+        -
+          limit: 50
+          duration: 10
+          time-unit: SECONDS
+
