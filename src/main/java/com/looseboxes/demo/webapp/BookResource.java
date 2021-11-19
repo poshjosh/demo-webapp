@@ -48,6 +48,7 @@ public class BookResource implements ErrorController {
     }
 
     @RateLimit(limit = 2, duration = 1, timeUnit = TimeUnit.MINUTES)
+    @RateLimit(limit = 20, duration = 5, timeUnit = TimeUnit.MINUTES)
     @GetMapping("/books")
     public List<Book> getBooks() {
         log.info("REST request to get all books");

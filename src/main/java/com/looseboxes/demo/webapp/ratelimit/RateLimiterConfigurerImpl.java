@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 public class RateLimiterConfigurerImpl implements RateLimiterConfigurer {
     @Override
     public void addConverters(RequestToIdConverterRegistry requestToIdConverterRegistry) {
-        requestToIdConverterRegistry.setConverter("general", new RequestToVMConverter());
-        requestToIdConverterRegistry.setConverter("utm_source", new RequestToUtmSourceConverter());
+        requestToIdConverterRegistry.registerConverter("general", new RequestToVMConverter());
+        requestToIdConverterRegistry.registerConverter("utm_source", new RequestToUtmSourceConverter());
     }
 }
